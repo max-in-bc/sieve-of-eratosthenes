@@ -1,0 +1,81 @@
+
+identification division.
+    program-id. prime-sieve.
+
+data division.
+    working-storage section.
+        77 i  pic 9(9)  value 1.
+        77 j  pic 9(9)  value 1.
+        77 k  pic 9(9)  value 1.
+        77 temp     pic 9(9)  value 0.
+                    
+        01 prime    pic 9(9)  value 2.
+        01 upper    pic 9(9)  value 0.
+        01 map.
+            05 sMap  occurs 100000000 times pic 9(9).
+           
+procedure division.
+    display "Please enter the upper bound: ".
+    accept upper from console.
+    
+    if upper is greater than 0
+        perform init-map
+            until i is greater than upper
+            
+        move prime to i
+            
+        perform find-primes
+            until i is greater than upper
+        
+        move 1 to i
+        
+        perform print-primes
+            until i is equal to upper
+        
+    else
+        display "Please enter an integer greater than 2".
+    
+   
+init-map.
+    move i to sMap(i).
+    add 1 to i.
+    
+find-primes.
+    move 1 to j.
+    perform remove-multiples
+        until j is greater than upper.
+        
+    move prime to j.
+    add 1 to j.
+    
+    perform next-prime
+        until prime is not equal to 0 or prime is greater than upper.
+   
+    if prime <= upper and i less than upper
+        display prime.    
+    
+    if i greater than upper
+        move upper to i
+        add 1 to i.
+    
+   add 1 to i.
+        
+remove-multiples.
+    compute temp = function mod (j, prime).
+
+    if temp is equal to 0 and j is not equal to prime
+        move 0 to sMap(j).
+ 
+    add 1 to j.
+    
+next-prime.
+    move sMap(j) to prime.
+    
+    add 1 to j.
+    
+print-primes.
+    if sMap(i) not equal 0
+        display sMap(i).
+      
+    add 1 to i.
+    
