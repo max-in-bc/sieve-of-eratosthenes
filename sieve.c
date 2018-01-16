@@ -4,6 +4,7 @@
 
 //this is the main program
 int main(int argc, char *argv[]){
+    //Initially, let p equal 2, the smallest prime number.
     int i, upper, prime = 2;
     
     if (argc != 2){
@@ -13,11 +14,13 @@ int main(int argc, char *argv[]){
     
     upper = atoi(argv[1]) + 1;
     int sMap[upper + 1];
-    
+
+    //Create a list of consecutive integers
     for (i = 0; i <= upper; i++){
         sMap[i] = i;
     }
-    
+
+    //Enumerate the multiples of p
     do{
         for (i = prime; i <= upper; i++){
                 
@@ -26,7 +29,8 @@ int main(int argc, char *argv[]){
         }
         
         i = prime + 1;
-        
+
+        //Find the first number greater than p in the list that is not marked.
         do{
             prime = sMap[i++];
         }while((prime == 0)&&(prime <= upper));

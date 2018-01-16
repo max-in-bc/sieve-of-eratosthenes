@@ -49,3 +49,7 @@ Each program usage is the same.
        ```css
        cobc -x sieve_cobol.cobc
        ```
+ 3. **Python**: [NumPy](http://www.numpy.org/) is the only requirement
+       ```css
+       No compilation necessary for Python
+       ```
